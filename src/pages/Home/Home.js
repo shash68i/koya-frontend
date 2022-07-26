@@ -5,11 +5,11 @@ import { PostCard, Suggestion } from "../../components";
 import { getPosts } from "../../core/slices/postSlice";
 
 import "./Home.css";
-import useStateUtils from "./utils/stateUtils";
+import useuseStateUtils from "./utils/useStateUtils";
 
 export default function Home() {
   const { loading, fetched, posts, suggest_locations, bottomBoundaryRef } =
-    useStateUtils();
+    useuseStateUtils();
 
   return (
     <div className="container posts-container">

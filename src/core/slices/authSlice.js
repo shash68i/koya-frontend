@@ -55,11 +55,13 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
+    [registerUser.pending]: (state, { payload }) => {
+      state.loading = true;
+    },
     [registerUser.fulfilled]: (state, { payload }) => {
       state.token = payload.token;
       state.loading = false;
       state.isAuthenticated = true;
-      console.log(payload, "payload");
       setAuthToken(payload.token);
     },
     [registerUser.rejected]: (state, { payload }) => {
@@ -69,7 +71,6 @@ const authSlice = createSlice({
       state.loading = false;
       state.isAuthenticated = true;
       state.token = payload;
-      // console.log(payload, "payload");
     },
     [loginUser.pending]: (state, { payload }) => {
       state.loading = true;
@@ -77,7 +78,6 @@ const authSlice = createSlice({
     [loginUser.rejected]: (state, { payload }) => {
       state.loading = false;
       toast.error("Invalid credentials");
-      // console.log(payload, "payload");
     },
     [loadUser.fulfilled]: (state, { payload }) => {
       state.loading = false;

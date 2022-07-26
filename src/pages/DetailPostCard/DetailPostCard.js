@@ -14,7 +14,7 @@ import "../../components/PostCard/PostCard.css";
 import { Comments, NearbyLocation } from "../../components";
 import { NavLink } from "react-router-dom";
 
-import stateUtils from "./utils/stateUtils";
+import useStateUtils from "./utils/useStateUtils";
 import {
   Box,
   CircularProgress,
@@ -40,7 +40,7 @@ function DetailPostCard() {
     closeLikesDialog,
     getNearbyLocations,
     handleUpdateLikes,
-  } = stateUtils();
+  } = useStateUtils();
 
   return loading ? (
     <div className="circular-progress">
@@ -181,8 +181,8 @@ function DetailPostCard() {
                     color: "#ed4956",
                   }}
                 />
-                {post?.likes.length}{" "}
-                {post?.likes.length === 0 || post?.likes.length === 1
+                {likesCount}{" "}
+                {likesCount === 0 || likesCount === 1
                   ? "like"
                   : "likes"}
               </IconButton>

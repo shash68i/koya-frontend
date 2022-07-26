@@ -13,6 +13,7 @@ import {
 import FormImage from "../../assets/images/form_image.jpg";
 import { getMyProfile } from "../../core/slices/userSlice";
 import "../Login/LoginSignup.css";
+import { Box, CircularProgress } from "@mui/material";
 
 const initialValues = {
   first_name: "",
@@ -47,6 +48,8 @@ function Signup() {
   const [signUpData, setSignUpData] = useState(initialValues);
 
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const loading =  useSelector((state) => state.auth.loading);
+
   const user = useSelector((state) => state.auth.user);
 
   const handleRegister = (values, { setSubmitting }) => {
@@ -154,7 +157,13 @@ function Signup() {
               </div>
 
               <button type="submit" className="auth-button">
-                Create Account
+              {loading ? (
+                  <Box display="flex" alignItems="center"  >
+                    <CircularProgress size="2.5rem" sx={{ color: "#d3d3d3"}} />
+                  </Box>
+                ) : (
+                  "Create Account"
+                )}
               </button>
               <div className="auth-footer">
                 Already have an account?{" "}

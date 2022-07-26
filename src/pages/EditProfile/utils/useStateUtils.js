@@ -21,12 +21,11 @@ const editProfileSchema = Yup.object().shape({
   instagram: Yup.string(),
 });
 
-const stateUtils = () => {
+const useStateUtils = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const profile = useSelector((state) => state.user.myProfile);
   const user = useSelector((state) => state.auth.user);
-
 
   const initialValues = {
     email: profile?.email || "",
@@ -57,4 +56,4 @@ const stateUtils = () => {
   };
 };
 
-export default stateUtils;
+export default useStateUtils;

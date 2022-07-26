@@ -25,14 +25,14 @@ export const locationsGroup = [
     "Kangra, Himachal Pradesh",
   ],
   [
-    "Amarnath, J&K",
-    "Srinagar, J&K",
-    "Gulmarg, J&K",
-    "Katra, J&K",
-    "Sonmarg, J&K",
-    "Pahalgam, J&K",
-    "Doda, J&K",
-    "Dal Lake, J&K",
+    "Amarnath, Jammu & Kashmir",
+    "Srinagar, Jammu & Kashmir",
+    "Gulmarg, Jammu & Kashmir",
+    "Katra, Jammu & Kashmir",
+    "Sonmarg, Jammu & Kashmir",
+    "Pahalgam, Jammu & Kashmir",
+    "Doda, Jammu & Kashmir",
+    "Dal Lake, Jammu & Kashmir",
   ],
   [
     "Nubhra Valley, Ladakh",
@@ -244,7 +244,12 @@ export const locationsGroup = [
   ["Imphal, Manipur", "Loktak Lake & Sendra Island, Manipur"],
 ];
 
+export const allLocations = locationsGroup.reduce((prev, current) => [
+  ...prev,
+  ...current,
+]);
 
-export const allLocations = locationsGroup.reduce((prev, current) => [...prev, ...current]);
-
-export const allLocationOptions = allLocations.map((location) => ({ label: location, value: location }));
+export const allLocationOptions = allLocations.map((location) => ({
+  label: location,
+  value: location,
+}));

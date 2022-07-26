@@ -9,6 +9,7 @@ import FormImage from "../../assets/images/form_image.jpg";
 import { authActions, loadUser, loginUser } from "../../core/slices/authSlice";
 import { getMyProfile } from "../../core/slices/userSlice";
 import "./LoginSignup.css";
+import { Box, CircularProgress } from "@mui/material";
 
 const initialValues = {
   email: "",
@@ -30,6 +31,7 @@ function Login() {
   const [loginData, setLoginData] = useState(initialValues);
 
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const loading = useSelector((state) => state.auth.loading);
 
   const handleLogin = (values, { setSubmitting }) => {
     setSubmitting(false);
@@ -88,7 +90,13 @@ function Login() {
               </div>
 
               <button type="submit" className="auth-button">
-                Log In
+                {loading ? (
+                  <Box display="flex" alignItems="center"  >
+                    <CircularProgress size="2.5rem" sx={{ color: "#d3d3d3"}} />
+                  </Box>
+                ) : (
+                  "Log In"
+                )}
               </button>
               <div className="auth-footer">
                 Don't have an account?{" "}

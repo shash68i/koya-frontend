@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, Navigate } from "react-router-dom";
 
-import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
 
 import "./CreateProfile.css";
-import { useDispatch, useSelector } from "react-redux";
-import stateUtils from "./utils/stateUtils";
+import useStateUtils from "./utils/useStateUtils";
 import { AccountCircleSharp } from "@mui/icons-material";
 
 export default function CreateProfile() {
@@ -16,7 +15,7 @@ export default function CreateProfile() {
     profileSchema,
     createProfileData,
     handleCreateProfile,
-  } = stateUtils();
+  } = useStateUtils();
 
   if (profile !== null) {
     return <Navigate to="/profile" />;

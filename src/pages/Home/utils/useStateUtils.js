@@ -23,7 +23,6 @@ const useStateUtils = () => {
   const filteredPosts = useSelector((state) => state.post.filteredPosts);
   const loading = useSelector((state) => state.post.loading);
 
-
   let bottomBoundaryRef = useRef();
   useFetch(page, dispatch);
   useLazyLoading(".card-img-top", posts);

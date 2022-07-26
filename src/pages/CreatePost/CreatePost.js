@@ -10,7 +10,7 @@ import {
   allLocations,
   locationsGroup,
 } from "../../location";
-import stateUtils from "./utils/stateUtils";
+import useStateUtils from "./utils/useStateUtils";
 
 const creatableCustomStyles = {
   container: (provided, state) => ({
@@ -79,7 +79,7 @@ const selectCustomStyles = {
 };
 
 export default function CreatePost({ handleClose }) {
-  const { postData, postSchema, handlePostSubmit } = stateUtils({
+  const { postData, postSchema, handlePostSubmit } = useStateUtils({
     handleClose,
   });
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import * as Yup from "yup";
 import { updateMyProfile } from "../../../core/slices/userSlice";
 
@@ -26,15 +27,17 @@ const profileSchema = Yup.object().shape({
   instagram: Yup.string(),
 });
 
-const stateUtils = () => {
+const useStateUtils = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
   const profile = useSelector((state) => state.user.myProfile);
 
   const [createProfileData, setCreateProfileData] = useState(initialValues);
 
   const handleCreateProfile = (values, { setSubmitting }) => {
     dispatch(updateMyProfile(values));
+    navigate("/");
   };
 
   return {
@@ -46,4 +49,4 @@ const stateUtils = () => {
   };
 };
 
-export default stateUtils;
+export default useStateUtils;

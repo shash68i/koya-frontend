@@ -133,7 +133,7 @@
 /* Detail PostCard Styling */
 .detail-post-card {
   width: 50%;
-  margin: 2rem auto;
+  margin: 8rem auto 2rem auto;
   padding: 1rem 1rem 0 1rem;
   border: 1px solid rgb(239, 243, 244);
   border-radius: 10px;
@@ -181,6 +181,14 @@
 
 .images-carousel img, .large-images-carousel img {
   max-width: 100%;
+}
+
+
+/* Image Carousel Styling */
+
+.rec.rec-dot {
+  height: 7px;
+  width: 7px;
 }
 
 .rec.rec-slider-container {

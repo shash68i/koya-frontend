@@ -6,7 +6,7 @@ import { getPost, updateLikes } from "../../../core/slices/postSlice";
 
 import { locationsGroup } from "../../../location";
 
-const stateUtils = () => {
+const useStateUtils = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
@@ -19,7 +19,7 @@ const stateUtils = () => {
   const [isLiked, setIsLiked] = useState(
     postData?.likes?.some((like) => loggedInUser?._id === like?.user)
   );
-  const [likesCount, setLikesCount] = useState(postData?.likes?.length);
+  const [likesCount, setLikesCount] = useState(post?.likes?.length);
 
   const [isLikesDialogOpen, setIsLikesDialog] = useState(false);
 
@@ -73,4 +73,4 @@ const stateUtils = () => {
   };
 };
 
-export default stateUtils;
+export default useStateUtils;

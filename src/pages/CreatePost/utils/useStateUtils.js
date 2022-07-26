@@ -25,12 +25,12 @@ const postSchema = Yup.object().shape({
   tags: Yup.array().min(1, "Add atleast 1 tags"),
 });
 
-const stateUtils = ({ handleClose}) => {
+const useStateUtils = ({ handleClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [postData, setPostData] = useState(initialValues);
 
-  const handlePostSubmit = (values, actions ) => {
+  const handlePostSubmit = (values, actions) => {
     setPostData(values);
     dispatch(addPost(values));
     actions.setSubmitting(false);
@@ -41,4 +41,4 @@ const stateUtils = ({ handleClose}) => {
   return { postData, postSchema, handlePostSubmit };
 };
 
-export default stateUtils;
+export default useStateUtils;
