@@ -1,0 +1,168 @@
+.add-post-container {
+  margin: auto;
+  font-size: 2rem;
+}
+
+.add-post-card {
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  align-items: center;
+  border: 1px solid rgb(239, 243, 244);
+  border-radius: 10px;
+}
+
+.add-post__pic {
+  width: 18rem;
+  height: 18rem;
+  clip-path: circle(45%);
+  shape-outside: circle(45%);
+  margin-bottom: 1.5rem;
+}
+
+.add-post__pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.add-post-section {
+  width: 95%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.add-post-fields {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 3rem;
+}
+
+.add-post-fields > input {
+  width: 100%;
+}
+
+.add-post-fields input {
+  height: 4rem;
+  border: none;
+  /* border-bottom: 1px solid #b3b3b3; */
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.add-post-fields input:focus {
+  box-shadow: #9775fa 0px 1.5px 0px;
+}
+
+.add-post-fields input::-webkit-input-placeholder {
+  font-family: "Inter", cursive;
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.add-post-fields > textarea {
+  width: 100%;
+}
+
+.add-post-fields textarea {
+  resize: none;
+  border: none;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  outline: none;
+  padding: 10px 10px;
+  border-radius: 10px;
+  background-color: #efefef;
+}
+
+/* .add-post-fields textarea:focus {
+  box-shadow: #9775fa 0px 1.5px 0px;
+} */
+
+.add-post-fields input::-webkit-input-placeholder {
+  font-family: "Inter", cursive;
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.add-post-group {
+  width: 100%;
+  display: flex;
+  position: relative;
+  gap: 6rem;
+}
+
+.add-post-group textarea {
+  width: 100%;
+  flex: 1;
+}
+
+.edit-group-btn {
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+}
+
+.action-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: 0 0;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 3rem;
+  padding: 0.5rem 2rem;
+  margin-top: 1rem;
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.action-button.save {
+  color: #9775fa;
+  background-color: #eae2ff;
+}
+
+.action-button.cancel {
+  color: #666666;
+  background-color: white;
+  border: 1px solid #666666;
+}
+
+.action-button:active,
+.action-button:hover,
+.action-button:focus {
+  outline: 0;
+}
+
+.action-button:active {
+  background-color: #eae2ff;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+  color: #115eaa;
+}
+
+.action-button.save:hover {
+  background-color: #aea8bf;
+  color: white;
+}
+
+.action-button.cancel:hover {
+  background-color: #494848;
+  color: #eae2ff;
+}
+
+.action-button:active:hover,
+.action-button:focus:hover,
+.action-button:focus {
+  background-color: #eae2ff;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+  color: #9775fa;
+}

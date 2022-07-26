@@ -1,0 +1,248 @@
+.post-card {
+  margin-top: 2rem;
+  padding: 1rem 1rem 0 1rem;
+  border: 1px solid rgb(239, 243, 244);
+  border-radius: 10px;
+  flex: 1;
+  font-size: 1.2rem;
+}
+
+.profile-pic {
+  width: 4.5rem;
+  height: 4.5rem;
+  clip-path: circle(45%);
+  shape-outside: circle(45%);
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-card__title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.user-location {
+  display: flex;
+  align-items: flex-end;
+  color: rgb(83, 100, 113);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  margin-left: -0.3rem;
+}
+
+.user-details {
+  font-size: 1.5rem;
+}
+
+.user-details .name {
+  color: rgb(15, 20, 25);
+}
+
+.user-details .username,
+.user-details .timestamp {
+  color: rgb(83, 100, 113);
+}
+
+.post-card__images {
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 40rem;
+  border-radius: 5px;
+}
+
+.post-card__images img {
+  width: 100%;
+  height: 40rem;
+  object-fit: cover;
+}
+
+.post-card__text {
+  width: 100%;
+  word-break: break-all;
+  font-size: 1.4rem;
+  word-spacing: 0.1rem;
+  margin-bottom: 2rem;
+  color: rgb(15, 20, 25);
+}
+
+.post-card__actions-info {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  word-spacing: -0.1rem;
+  color: rgb(83, 100, 113);
+}
+
+.post-card__actions-info span {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.post-card__actions {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  border-top: 1px solid rgb(239, 243, 244);
+  justify-content: space-between;
+}
+
+.imageWrapper {
+  width: 30rem;
+  height: 30rem;
+}
+
+.action-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.action-items:nth-child(1) {
+  border-right: 1px solid rgb(239, 243, 244);
+}
+
+.post-card__comments {
+  display: flex;
+  margin: 1rem 0;
+  align-items: center;
+}
+
+.tags-wrapper {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 20px;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 800px) {
+  .post-card__images img {
+    object-position: center center;
+  }
+}
+
+/* Detail PostCard Styling */
+.detail-post-card {
+  width: 50%;
+  margin: 2rem auto;
+  padding: 1rem 1rem 0 1rem;
+  border: 1px solid rgb(239, 243, 244);
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
+
+.detail-post-card__images {
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 47rem;
+  border-radius: 5px;
+}
+
+/* Post Comment Styling in Detail Post Card */
+
+.detail-post-card__post-comment {
+  width: 100%;
+  display: flex;
+}
+
+.nearby-location-section {
+  width: 50%;
+  margin: auto;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+}
+
+.large-images-carousel {
+  max-height: 52rem;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 2rem;
+}
+
+
+.images-carousel {
+  max-height: 42rem;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 2rem;
+}
+
+.images-carousel img, .large-images-carousel img {
+  max-width: 100%;
+}
+
+.rec.rec-slider-container {
+  margin: 0;
+}
+
+.rec.rec-carousel {
+  max-width: 100%;
+  position: relative;
+}
+
+.rec.rec-arrow.rec-arrow-right {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  background-color: rgb(192, 189, 194);
+  backdrop-filter: blur(10px);
+  color: black;
+  height: 3rem;
+  width: 3rem;
+  min-width: 3rem;
+  line-height: 0px;
+  font-size: 8px;
+}
+
+.rec.rec-arrow.rec-arrow-left {
+  position: absolute;
+  z-index: 1;
+  left: 1rem;
+  background-color: rgba(192, 189, 194, 0.873);
+  backdrop-filter: blur(10px);
+  color: black;
+  height: 3rem;
+  width: 3rem;
+  min-width: 3rem;
+  line-height: 0px;
+  font-size: 8px;
+}
+
+.rec.rec-arrow {
+  box-shadow: none;
+}
+
+.rec.rec-arrow:hover:enabled {
+  background-color: rgba(211, 208, 213, 0.873);
+  color: black;
+}
+
+@media (min-width: 260px) and (max-width: 1024px) {
+  .detail-post-card {
+    width: 60%;
+  }
+}
+
+@media (min-width: 260px) and (max-width: 640px) {
+  .detail-post-card {
+    width: 90%;
+  }
+
+  .nearby-location-section {
+    width: 90%;
+  }
+}
+
+

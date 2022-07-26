@@ -1,0 +1,20 @@
+.container {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toast-text {
+  font-size: 16px;
+}
+
+.toast-container {
+  border-left: 10px solid red;
+}
+
+@media (min-width: 200px) and (max-width: 640px) {
+  .container {
+    width: 90%;
+    margin: auto;
+  }
+}

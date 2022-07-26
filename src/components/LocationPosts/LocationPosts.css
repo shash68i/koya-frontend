@@ -1,0 +1,15 @@
+.post-card {
+  margin-top: 1rem;
+  padding: 1rem 1rem 0 1rem;
+  border: 1px solid rgb(239, 243, 244);
+  border-radius: 10px;
+  flex: 1;
+  font-size: 1.2rem;
+}
+
+.empty-posts {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

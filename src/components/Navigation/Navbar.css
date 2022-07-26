@@ -1,0 +1,60 @@
+.header {
+  width: 100%;
+  background-color: #ffffff;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+}
+
+.navbar {
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 3.6rem;
+  font-weight: 700;
+  font-family: "Hurricane", cursive;
+  letter-spacing: 3px;
+  color: black;
+}
+
+.search {
+  height: 36px;
+  width: 32rem;
+  font-size: 1.6rem;
+  background-color: #efefef;
+  border: none;
+  outline: none;
+  padding: 0 16px;
+  border-radius: 0.8rem;
+}
+
+.search::-webkit-input-placeholder {
+  font-family: "Inter", cursive;
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.nav-side {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.create-post-dialog {
+  width: 100%;
+}
+
+@media (min-width: 260px) and (max-width: 1000px) {
+  .search-bar {
+    display: none;
+  }
+}

@@ -1,0 +1,49 @@
+.posts-container {
+  display: grid;
+  margin-top: 1rem;
+  grid-gap: 2rem;
+  grid-template-columns: 2.5fr 1.5fr;
+  margin-top: 8rem;
+}
+
+.card-section {
+  background-color: white;
+}
+
+.suggest-section {
+  min-height: 60rem;
+  margin-top: 1rem;
+}
+
+.circular-progress {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infinite-scroll-progress {
+  margin: 2rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-posts {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 200px) and (max-width: 1024px) {
+  .posts-container {
+    grid-template-columns: 1fr;
+  }
+
+  .suggest-section {
+    display: none;
+  }
+}
