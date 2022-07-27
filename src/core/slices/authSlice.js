@@ -66,6 +66,7 @@ const authSlice = createSlice({
     },
     [registerUser.rejected]: (state, { payload }) => {
       toast.error(payload.msg);
+      state.loading = false;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.loading = false;

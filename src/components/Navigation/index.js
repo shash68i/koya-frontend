@@ -4,13 +4,14 @@ import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-import { Dialog, DialogTitle, Paper } from "@mui/material";
+import { Box, Dialog, DialogTitle, Paper } from "@mui/material";
 import CreatePost from "../../pages/CreatePost";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../core/slices/authSlice";
 import SearchSelect from "../SearchSelect";
 import { allLocationOptions } from "../../location";
 import { userActions } from "../../core/slices/userSlice";
+import { AddIcon, LogoutIcon, UserIcon } from "../../assets/icons";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -39,15 +40,19 @@ export default function Navbar() {
         />
         <div className="nav-side">
           <div className="create-post" onClick={handleClickOpen}>
-            <AddBoxOutlinedIcon
-              sx={{ fontSize: "2.8rem", color: "#4d4d4d", cursor: "pointer" }}
+            <Box
+              component="img"
+              src={AddIcon}
+              sx={{ height: "2rem", width: "2rem", cursor: "pointer" }}
             />
           </div>
 
           <NavLink to="/profile">
             <div className="profile">
-              <PermIdentityRoundedIcon
-                sx={{ fontSize: "3.2rem", color: "#4d4d4d" }}
+              <Box
+                component="img"
+                src={UserIcon}
+                sx={{ height: "2rem", width: "2rem", cursor: "pointer" }}
               />
             </div>
           </NavLink>
@@ -60,8 +65,10 @@ export default function Navbar() {
                 dispatch(userActions.clearProfile());
               }}
             >
-              <LogoutRoundedIcon
-                sx={{ fontSize: "2.8rem", color: "#4d4d4d" }}
+              <Box
+                component="img"
+                src={LogoutIcon}
+                sx={{ height: "2rem", width: "2rem", cursor: "pointer" }}
               />
             </div>
           </NavLink>
