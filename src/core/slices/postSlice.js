@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../utils/api";
 
 const initialPostState = {
@@ -37,7 +37,6 @@ export const getPostsByLocation = createAsyncThunk(
 );
 
 export const addPost = createAsyncThunk("posts/addPost", async (postData) => {
-  console.log(postData, "postData");
   const response = await api.post("/posts", postData);
   return response.data;
 });
@@ -79,6 +78,9 @@ const postSlice = createSlice({
     },
   },
   extraReducers: {
+    [getPosts.pending]: (state) => {
+      state.loading = true;
+    },
     [getPosts.fulfilled]: (state, { payload }) => {
       state.posts = state.posts.concat(payload);
       state.fetched = payload.length === 0;
@@ -131,13 +133,11 @@ const postSlice = createSlice({
     [addComment.fulfilled]: (state, { payload }) => {
       state.post = { ...state.post, comments: payload };
       state.loading = false;
-      console.log(state.post, "comments post");
     },
     [getPostsByLocation.pending]: (state, { payload }) => {
       state.loading = true;
     },
     [getPostsByLocation.fulfilled]: (state, { payload }) => {
-      console.log(payload, "payload");
       state.filteredPosts = payload;
       state.loading = false;
       state.fetched = false;

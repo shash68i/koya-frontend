@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./LocationPosts.css";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsByLocation } from "../../core/slices/postSlice";
 import { CircularProgress, Typography } from "@mui/material";
@@ -37,8 +37,6 @@ function LocationPosts() {
   }, []);
 
   const suggest_locations = [...saved_locations, ...getRandomLocations];
-
-  console.log(filteredPosts, "filtered posts");
 
   return loading ? (
     <div className="circular-progress">

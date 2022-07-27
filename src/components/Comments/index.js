@@ -1,8 +1,6 @@
 import React, { Fragment, useState } from "react";
 
 import {
-  FavoriteBorderOutlined,
-  ModeCommentOutlined,
   SendRounded,
   AccountCircleOutlined,
 } from "@mui/icons-material";

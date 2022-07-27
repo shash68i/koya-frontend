@@ -84,7 +84,6 @@ const authSlice = createSlice({
       state.loading = false;
       state.user = payload;
       state.isAuthenticated = true;
-      console.log(payload, "payload");
     },
     [loadUser.rejected]: (state, { payload }) => {
       state.loading = false;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import * as Yup from "yup";
 import { getPost, updateLikes } from "../../../core/slices/postSlice";
 
 import { locationsGroup } from "../../../location";
@@ -19,7 +18,7 @@ const useStateUtils = () => {
   const [isLiked, setIsLiked] = useState(
     postData?.likes?.some((like) => loggedInUser?._id === like?.user)
   );
-  const [likesCount, setLikesCount] = useState(post?.likes?.length);
+  const [likesCount, setLikesCount] = useState(post?.likes?.length || 0);
 
   const [isLikesDialogOpen, setIsLikesDialog] = useState(false);
 

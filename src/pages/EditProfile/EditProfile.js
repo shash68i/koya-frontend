@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import "./EditProfile.css";
 import useStateUtils from "./utils/useStateUtils";
@@ -10,8 +10,6 @@ import { AccountCircleSharp } from "@mui/icons-material";
 export default function EditProfile() {
   const { initialValues, user, profile, editProfileSchema, handleEditProfile } =
     useStateUtils();
-
-  console.log(profile, "profile");
 
   return (
     user &&

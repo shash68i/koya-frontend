@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import {
   FmdGoodOutlined,
-  FavoriteOutlined,
-  ModeCommentOutlined,
-  FavoriteBorderOutlined,
   AccountCircleOutlined,
   Close,
 } from "@mui/icons-material";
-// import  from "@mui/icons-material/LocationOnTwoTone";
-// import  from '@mui/icons-material/NavigateNextOutlined';
 import Carousel from "react-elastic-carousel";
 
 import "./PostCard.css";
@@ -25,9 +20,9 @@ import {
   Divider,
   Grid,
   IconButton,
-  Paper,
   Typography,
 } from "@mui/material";
+import { CommentIcon, DislikeIcon, LikeIcon } from "../../assets/icons";
 
 function PostCard({ post, type }) {
   const {
@@ -85,15 +80,15 @@ function PostCard({ post, type }) {
   return (
     <>
       <Dialog
-        className="create-post-dialog"
+        className="likes-post-dialog"
         open={isLikesDialogOpen}
         onClose={closeLikesDialog}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         title="Likes"
-        maxWidth="md"
+        fullWidth
       >
-        <DialogTitle sx={{ width: { sm: "30rem", md: "40rem" } }}>
+        <DialogTitle>
           <Typography sx={{ textAlign: "center" }} gutterBottom variant="h4">
             Likes
           </Typography>
@@ -112,22 +107,42 @@ function PostCard({ post, type }) {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Grid container alignItems="center" rowSpacing={2}>
-            {likes.map((like) => (
-              <>
-                <Grid item sm={2}>
-                  <Box
-                    component="img"
-                    className="profile-pic"
-                    src={like.profile_pic}
-                  />
-                </Grid>
-                <Grid item sm={10}>
-                  <Typography variant="h6" color="black" fontWeight={600}>
+          <Grid container alignItems="center" rowSpacing={1}>
+            {likes.map((like, index) => (
+              <Grid
+                key={index}
+                item
+                sm={12}
+                sx={{ display: "flex", gap: "1rem", alignItems: "center" }}
+              >
+                <Box
+                  component="img"
+                  className="likes-profile-pic"
+                  src={like.profile_pic}
+                />
+
+                <Link
+                  className="profile-link"
+                  to={`/users/${like.user}`}
+                  state={{
+                    first_name: like.first_name,
+                    last_name: like.last_name,
+                    username: like.username,
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    color="black"
+                    fontWeight={600}
+                    noWrap
+                  >
                     {like.first_name} {like.last_name}
                   </Typography>
-                </Grid>
-              </>
+                  <Typography variant="h6" color="gray" fontWeight={600}>
+                    @{like.username}
+                  </Typography>
+                </Link>
+              </Grid>
             ))}
           </Grid>
         </DialogContent>
@@ -183,27 +198,33 @@ function PostCard({ post, type }) {
         </div>
 
         <div className="post-card__text">
-          <Box sx={{ fontSize: "16px"}}>
+          <Box sx={{ fontSize: "16px" }}>
             <strong>
               {post?.first_name} {post?.last_name}
             </strong>{" "}
             {text}
           </Box>
           <div className="tags-wrapper">
-            {tags?.map((tag) => (
-              <Typography fontSize="16px" color="#154078" noWrap>
+            {tags?.map((tag, index) => (
+              <Typography key={index} fontSize="16px" color="#154078" noWrap>
                 #{tag}
               </Typography>
             ))}
           </div>
           <div className="post-card__actions-info">
             <span>
-              <IconButton onClick={openLikesDialog}>
-                <FavoriteOutlined
+              <IconButton
+                ddisabled={likesCount === 0}
+                onClick={openLikesDialog}
+              >
+                <Box
+                  component="img"
+                  src={LikeIcon}
                   sx={{
-                    fontSize: "1.85rem",
-                    marginRight: "0.1rem",
-                    color: "#ed4956",
+                    height: "2rem",
+                    width: "2rem",
+                    cursor: "pointer",
+                    marginRight: "0.8rem",
                   }}
                 />
                 {likesCount}{" "}
@@ -213,8 +234,15 @@ function PostCard({ post, type }) {
 
             <span>
               <NavLink className="comment" to={`/posts/${_id}`}>
-                <ModeCommentOutlined
-                  sx={{ fontSize: "1.85rem", marginRight: "0.3rem" }}
+                <Box
+                  component="img"
+                  src={CommentIcon}
+                  sx={{
+                    height: "2rem",
+                    width: "2rem",
+                    cursor: "pointer",
+                    marginRight: "0.8rem",
+                  }}
                 />
                 {post.comments.length}{" "}
                 {post.comments.length === 0 || post.comments.length === 1
@@ -228,40 +256,41 @@ function PostCard({ post, type }) {
         <div className="post-card__actions">
           <span className="action-items">
             {isLiked ? (
-              <FavoriteOutlined
+              <Box
+                component="img"
                 onClick={handleUpdateLikes}
+                src={LikeIcon}
                 sx={{
-                  width: "2em",
-                  cursor: "pointer",
-                  fontSize: "2.7rem",
+                  height: "1.8rem",
+                  width: "1.8rem",
                   margin: "1rem",
-                  padding: "0 1rem",
-                  color: "#ed4956",
+                  cursor: "pointer",
                 }}
               />
             ) : (
-              <FavoriteBorderOutlined
+              <Box
+                component="img"
                 onClick={handleUpdateLikes}
+                src={DislikeIcon}
                 sx={{
-                  width: "2em",
+                  height: "2rem",
+                  width: "2rem",
                   cursor: "pointer",
-                  fontSize: "2.7rem",
                   margin: "1rem",
-                  padding: "0 1rem",
                 }}
               />
             )}
           </span>
           <span className="action-items">
             <NavLink to={`/posts/${_id}`}>
-              <ModeCommentOutlined
+              <Box
+                component="img"
+                src={CommentIcon}
                 sx={{
-                  width: "2em",
+                  height: "2rem",
+                  width: "2rem",
                   cursor: "pointer",
-                  fontSize: "2.4rem",
                   margin: "1rem",
-                  padding: "0 1rem",
-                  fontWeight: "400",
                 }}
               />
             </NavLink>

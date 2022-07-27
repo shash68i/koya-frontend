@@ -1,4 +1,3 @@
-import { ActionTypes } from "@mui/base";
 import { useField } from "formik";
 import { useState } from "react";
 import CreatableSelect from "react-select/creatable";
@@ -41,26 +40,24 @@ export default function FormikSelect(props) {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const [field, meta, helpers] = useField(props.field.name); // can pass 'props' into useField also, if 'props' contains a name attribute
-  const { value, setValue, setTouched, setError } = helpers;
+  const { setValue } = helpers;
 
   const createOption = (label) => ({ label, value: label });
-  
+
   const setFieldProps = (selectedOption, ActionTypes) => {
     if (ActionTypes.action === "create-option") {
       setOptions([...options, createOption(ActionTypes.option.value)]);
-      setValue([...props.field.value, ActionTypes.option.value]);
+      setValue([...props.field.value, ActionTypes.option.value], true);
     } else {
-      setValue(selectedOption.map((option) => option.value));
+      setValue(
+        selectedOption.map((option) => option.value),
+        true
+      );
     }
-    setTouched(true);
-    setError(undefined);
   };
 
   const openMenu = () => {
     setMenuIsOpen(true);
-  };
-  const closeMenu = () => {
-    setMenuIsOpen(false);
   };
 
   return props.selectStyle === "Normal Select" ? (
@@ -93,24 +90,4 @@ export default function FormikSelect(props) {
       {...props}
     />
   );
-}
-
-{
-  /* <CreatableSelect */
-}
-//   styles={creatableCustomStyles}
-//   isMulti
-//   placeholder={props.placeholder}
-//   openMenuOnFocus={true}
-//   name={props.field.name}
-//   onBlur={props.field.blur}
-//   onCreateOption={closeMenu}
-//   onChange={(selectedOption, ActionTypes) => {
-//     setFieldProps(selectedOption, ActionTypes);
-//   }}
-//   onInputChange={openMenu}
-//   menuIsOpen={menuIsOpen}
-//   isClearable={false}
-//   options={options}
-//   {...props}
-// />
+};

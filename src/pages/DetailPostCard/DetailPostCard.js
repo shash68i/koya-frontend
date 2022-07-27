@@ -1,18 +1,15 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 
 import {
   AccountCircleTwoTone,
   FmdGoodOutlined,
-  FavoriteOutlined,
-  ModeCommentOutlined,
-  FavoriteBorderOutlined,
   Close,
 } from "@mui/icons-material";
 import Carousel from "react-elastic-carousel";
 
 import "../../components/PostCard/PostCard.css";
 import { Comments, NearbyLocation } from "../../components";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import useStateUtils from "./utils/useStateUtils";
 import {
@@ -26,6 +23,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { CommentIcon, DislikeIcon, LikeIcon } from "../../assets/icons";
 
 function DetailPostCard() {
   const {
@@ -35,7 +33,6 @@ function DetailPostCard() {
     id,
     post,
     loading,
-    loggedInUser,
     openLikesDialog,
     closeLikesDialog,
     getNearbyLocations,
@@ -49,7 +46,7 @@ function DetailPostCard() {
   ) : (
     <Fragment>
       <Dialog
-        className="create-post-dialog"
+        className="likes-post-dialog"
         open={isLikesDialogOpen}
         onClose={closeLikesDialog}
         aria-labelledby="alert-dialog-title"
@@ -57,7 +54,7 @@ function DetailPostCard() {
         title="Likes"
         maxWidth="md"
       >
-        <DialogTitle sx={{ width: { sm: "30rem", md: "40rem" } }}>
+        <DialogTitle>
           <Typography sx={{ textAlign: "center" }} gutterBottom variant="h4">
             Likes
           </Typography>
@@ -77,19 +74,41 @@ function DetailPostCard() {
         </DialogTitle>
         <DialogContent>
           <Grid container alignItems="center" rowSpacing={2}>
-            {post?.likes?.map((like) => (
+            {post?.likes?.map((like, index) => (
               <>
-                <Grid item sm={2}>
+                <Grid
+                  item
+                  sm={12}
+                  key={index}
+                  sx={{ display: "flex", gap: "1rem", alignItems: "center" }}
+                >
                   <Box
                     component="img"
-                    className="profile-pic"
+                    className="likes-profile-pic"
                     src={like.profile_pic}
                   />
-                </Grid>
-                <Grid item sm={10}>
-                  <Typography variant="h6" color="black" fontWeight={600}>
-                    {like.first_name} {like.last_name}
-                  </Typography>
+
+                  <Link
+                    className="profile-link"
+                    to={`/users/${like.user}`}
+                    state={{
+                      first_name: like.first_name,
+                      last_name: like.last_name,
+                      username: like.username,
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      color="black"
+                      fontWeight={600}
+                      noWrap
+                    >
+                      {like.first_name} {like.last_name}
+                    </Typography>
+                    <Typography variant="h6" color="gray" fontWeight={600}>
+                      @{like.username}
+                    </Typography>
+                  </Link>
                 </Grid>
               </>
             ))}
@@ -165,32 +184,35 @@ function DetailPostCard() {
           </strong>{" "}
           {post?.text}
           <div className="tags-wrapper">
-            {post?.tags?.map((tag) => (
-              <Typography variant="h6" color="#154078" noWrap>
+            {post?.tags?.map((tag, index) => (
+              <Typography variant="h6" color="#154078" key={index} noWrap>
                 #{tag}
               </Typography>
             ))}
           </div>
           <div className="post-card__actions-info">
             <span>
-              <IconButton onClick={openLikesDialog}>
-                <FavoriteOutlined
+              <IconButton disabled={likesCount === 0} onClick={openLikesDialog}>
+                <Box
+                  component="img"
+                  src={LikeIcon}
                   sx={{
-                    fontSize: "1.85rem",
-                    marginRight: "0.1rem",
-                    color: "#ed4956",
+                    height: "2rem",
+                    width: "2rem",
+                    margin: "1rem",
+                    cursor: "pointer",
                   }}
                 />
                 {likesCount}{" "}
-                {likesCount === 0 || likesCount === 1
-                  ? "like"
-                  : "likes"}
+                {likesCount === 0 || likesCount === 1 ? "like" : "likes"}
               </IconButton>
             </span>
 
             <span>
-              <ModeCommentOutlined
-                sx={{ fontSize: "1.85rem", marginRight: "0.1rem" }}
+              <Box
+                component="img"
+                src={CommentIcon}
+                sx={{ height: "1.8rem", width: "1.8rem", cursor: "pointer" }}
               />
               {post?.comments.length}{" "}
               {post?.comments.length === 0 || post?.comments.length === 1
@@ -203,37 +225,36 @@ function DetailPostCard() {
         <div className="post-card__actions">
           <span className="action-items">
             {isLiked ? (
-              <FavoriteOutlined
+              <Box
+                component="img"
                 onClick={handleUpdateLikes}
+                src={LikeIcon}
                 sx={{
-                  width: "2em",
-                  cursor: "pointer",
-                  fontSize: "2.7rem",
+                  height: "2rem",
+                  width: "2rem",
                   margin: "1rem",
-                  padding: "0 1rem",
-                  color: "#ed4956",
+                  cursor: "pointer",
                 }}
               />
             ) : (
-              <FavoriteBorderOutlined
+              <Box
+                component="img"
                 onClick={handleUpdateLikes}
+                src={DislikeIcon}
                 sx={{
-                  width: "2em",
-                  cursor: "pointer",
-                  fontSize: "2.7rem",
+                  height: "2rem",
+                  width: "2rem",
                   margin: "1rem",
-                  padding: "0 1rem",
+                  cursor: "pointer",
                 }}
               />
             )}
           </span>
           <span className="action-items">
-            <ModeCommentOutlined
-              sx={{
-                fontSize: "2.4rem",
-                margin: "1rem",
-                fontWeight: "400",
-              }}
+            <Box
+              component="img"
+              src={CommentIcon}
+              sx={{ height: "1.8rem", width: "1.8rem", cursor: "pointer" }}
             />
           </span>
         </div>

@@ -16,12 +16,7 @@ const initialValues = {
 const profileSchema = Yup.object().shape({
   address: Yup.string().required("Required!"),
   bio: Yup.string(),
-  profile_pic: Yup.string()
-    // .matches(
-    //   "/.(jpg|jpeg|png|webp|avif|gif|svg)$/",
-    //   "Please enter a valid image Url"
-    // )
-    .required("Required!"),
+  profile_pic: Yup.string().required("Required!"),
   twitter: Yup.string(),
   facebook: Yup.string(),
   instagram: Yup.string(),

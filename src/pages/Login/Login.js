@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, NavLink } from "react-router-dom";
 
-import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import FormImage from "../../assets/images/form_image.jpg";
-import { authActions, loadUser, loginUser } from "../../core/slices/authSlice";
+import { loadUser, loginUser } from "../../core/slices/authSlice";
 import { getMyProfile } from "../../core/slices/userSlice";
 import "./LoginSignup.css";
 import { Box, CircularProgress } from "@mui/material";
@@ -35,7 +35,6 @@ function Login() {
 
   const handleLogin = (values, { setSubmitting }) => {
     setSubmitting(false);
-    console.log("Submitted Details", loginData);
     dispatch(loginUser(JSON.stringify(values)));
   };
 
@@ -91,8 +90,8 @@ function Login() {
 
               <button type="submit" className="auth-button">
                 {loading ? (
-                  <Box display="flex" alignItems="center"  >
-                    <CircularProgress size="2.5rem" sx={{ color: "#d3d3d3"}} />
+                  <Box display="flex" alignItems="center">
+                    <CircularProgress size="2.5rem" sx={{ color: "#d3d3d3" }} />
                   </Box>
                 ) : (
                   "Log In"

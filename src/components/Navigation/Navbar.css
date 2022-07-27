@@ -49,6 +49,11 @@
   gap: 2rem;
 }
 
+.likes-post-dialog {
+  max-width: 40rem;
+  margin: auto;
+}
+
 .create-post-dialog {
   width: 100%;
 }

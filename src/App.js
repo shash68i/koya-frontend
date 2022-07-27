@@ -51,7 +51,7 @@ function App() {
         bodyClassName="toast-text"
         toastClassName="toast-container"
         position="top-right"
-        autoClose={5000}
+        autoClose={800}
         hideProgressBar
         newestOnTop={false}
         closeOnClick

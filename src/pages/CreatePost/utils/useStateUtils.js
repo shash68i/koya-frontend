@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import * as Yup from "yup";
 import { addPost } from "../../../core/slices/postSlice";
-import { userActions } from "../../../core/slices/userSlice";
 
 const initialValues = {
   text: "",
@@ -17,12 +16,12 @@ const postSchema = Yup.object().shape({
     .min(10, "Too Short!")
     .max(500, "Too Long!")
     .required("Required!"),
-  images: Yup.array().min(1, "Add atleast 1 pic"),
+  images: Yup.array().required('Add atleast 1 image'),
   location: Yup.string()
     .min(2, "Too Short!")
     .max(150, "Too Long!")
     .required("Required!"),
-  tags: Yup.array().min(1, "Add atleast 1 tags"),
+  tags: Yup.array().required('Add atleast 1 image'),
 });
 
 const useStateUtils = ({ handleClose }) => {

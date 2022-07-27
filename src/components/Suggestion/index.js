@@ -25,10 +25,9 @@ export default function Suggestion({ locationOptions }) {
 
         <ul className="suggest-location__items">
           {locationOptions.map((location, index) => (
-            <NavLink style={{ color: "black" }} to={encodeURI(`/posts/location/${location}`)}>
+            <NavLink key={index} style={{ color: "black" }} to={encodeURI(`/posts/location/${location}`)}>
               <li
                 className="suggest-location__item"
-                key={index}
                 onClick={() => dispatch(getPostsByLocation(location))}
               >
                 <FmdGoodOutlined

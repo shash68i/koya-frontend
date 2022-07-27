@@ -17,10 +17,11 @@ export default function NearbyLocation({ locationOptions }) {
         <div className="nearby-location__items">
           {locationOptions?.map((location, index) => (
             <NavLink
+              key={index}
               style={{ color: "black" }}
               to={encodeURI(`/posts/location/${location}`)}
             >
-              <span className="nearby-location__item" key={index}>
+              <span className="nearby-location__item">
                 <FmdGoodOutlined
                   sx={{
                     fontSize: "2rem",

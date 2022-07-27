@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import { NavLink, Link, Navigate } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import {
   AccountCircleTwoTone,
-  EmailOutlined,
   FacebookOutlined,
-  FmdGoodOutlined,
   Instagram,
   Twitter,
 } from "@mui/icons-material";
@@ -24,8 +22,6 @@ export default function Profile() {
   const profile = useSelector((state) => state.user.myProfile);
   const posts = useSelector((state) => state.post.myPosts);
   const loading = useSelector((state) => state.post.loading);
-
-  console.log(loading, "loading");
 
   useEffect(() => {
     dispatch(getMyPosts(user));
