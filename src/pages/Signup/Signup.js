@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 
-import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import {
-  authActions,
-  loadUser,
-  registerUser,
-} from "../../core/slices/authSlice";
+import { loadUser, registerUser } from "../../core/slices/authSlice";
 import FormImage from "../../assets/images/form_image.jpg";
 import { getMyProfile } from "../../core/slices/userSlice";
 import "../Login/LoginSignup.css";
 import { Box, CircularProgress } from "@mui/material";
 
-const initialValues = {
+const signUpData = {
   first_name: "",
   last_name: "",
   username: "",
@@ -44,11 +40,8 @@ const signUpSchema = Yup.object().shape({
 
 function Signup() {
   const dispatch = useDispatch();
-
-  const [signUpData, setSignUpData] = useState(initialValues);
-
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
-  const loading =  useSelector((state) => state.auth.loading);
+  const loading = useSelector((state) => state.auth.loading);
 
   const user = useSelector((state) => state.auth.user);
 
@@ -157,9 +150,9 @@ function Signup() {
               </div>
 
               <button type="submit" className="auth-button">
-              {loading ? (
-                  <Box display="flex" alignItems="center"  >
-                    <CircularProgress size="2.5rem" sx={{ color: "#d3d3d3"}} />
+                {loading ? (
+                  <Box display="flex" alignItems="center">
+                    <CircularProgress size="2.5rem" sx={{ color: "#d3d3d3" }} />
                   </Box>
                 ) : (
                   "Create Account"

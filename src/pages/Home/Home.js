@@ -1,15 +1,14 @@
-import { CircularProgress, Dialog, Paper, Typography } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import React from "react";
 
 import { PostCard, Suggestion } from "../../components";
-import { getPosts } from "../../core/slices/postSlice";
 
 import "./Home.css";
-import useuseStateUtils from "./utils/useStateUtils";
+import useStateUtils from "./utils/useStateUtils";
 
 export default function Home() {
-  const { loading, fetched, posts, suggest_locations, bottomBoundaryRef } =
-    useuseStateUtils();
+  const { posts, suggestLocations, bottomBoundaryRef } =
+    useStateUtils();
 
   return (
     <div className="container posts-container">
@@ -18,19 +17,18 @@ export default function Home() {
           <PostCard className="card-image-top" post={post} key={post._id} />
         ))}
 
-        {!fetched ? (
-          <div
-            id="page-bottom-boundary"
-            ref={bottomBoundaryRef}
-            className="infinite-scroll-progress"
-          >
-            <CircularProgress />
-          </div>
-        ) : null}
+        {/* If we have very limited posts, use "fetched" variable for conditional rendering of Spinner */}
+        <div
+          id="page-bottom-boundary"
+          ref={bottomBoundaryRef}
+          className="infinite-scroll-progress"
+        >
+          <CircularProgress />
+        </div>
       </div>
 
       <div className="suggest-section">
-        <Suggestion locationOptions={suggest_locations} />
+        <Suggestion locationOptions={suggestLocations} />
       </div>
     </div>
   );

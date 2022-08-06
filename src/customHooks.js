@@ -1,32 +1,27 @@
 import { useEffect, useCallback, useRef } from "react";
-import { useSelector } from "react-redux";
-import { getPosts, postActions, updateLikes } from "./core/slices/postSlice";
+import { getPosts, postActions } from "./core/slices/postSlice";
 
 // make API calls and pass the returned data via dispatch
 export const useFetch = (page, dispatch) => {
   useEffect(() => {
-      dispatch(getPosts(page));
+    dispatch(getPosts(page));
   }, [page]);
 };
 
 export const useInfiniteScroll = (scrollRef, dispatch) => {
-  const scrollObserver = useCallback(
-    (node) => {
-      new IntersectionObserver((entries) => {
-        entries.forEach((en) => {
-          if (en.intersectionRatio > 0) {
-            dispatch(postActions.infiniteScrollAddPage());
-          }
-        });
-      }).observe(node);
-    },
-    [dispatch]
-  );
   useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          dispatch(postActions.infiniteScrollAddPage());
+        }
+      });
+    });
+
     if (scrollRef.current) {
-      scrollObserver(scrollRef.current);
+      observer.observe(scrollRef.current)
     }
-  }, [scrollObserver, scrollRef]);
+  }, [scrollRef,dispatch]);
 };
 
 // lazy load images with intersection observer

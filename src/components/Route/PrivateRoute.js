@@ -8,7 +8,7 @@ import Navbar from "../Navigation";
 const PrivateRoute = ({ component: Component }) => {
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const loading = useSelector((state) => state.auth.loading);
-  const postsLoading = useSelector((state) => state.post.loading);
+  // const profileLoading = useSelector((state) => state.user.loading);
   const profile = useSelector((state) => state.user.myProfile);
 
   if (loading) {
@@ -25,13 +25,7 @@ const PrivateRoute = ({ component: Component }) => {
     return (
       <Fragment>
         <Navbar />
-        {profile ? (
-          <Component />
-        ) : postsLoading ? (
-          <Component />
-        ) : (
-          <CreateProfile />
-        )}
+        <Component />
       </Fragment>
     );
   }

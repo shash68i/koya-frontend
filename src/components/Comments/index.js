@@ -1,9 +1,6 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 
-import {
-  SendRounded,
-  AccountCircleOutlined,
-} from "@mui/icons-material";
+import { SendRounded, AccountCircleOutlined } from "@mui/icons-material";
 
 import Comment from "../Comment";
 
@@ -11,14 +8,9 @@ import "./Comments.css";
 import { addComment } from "../../core/slices/postSlice";
 import { useDispatch } from "react-redux";
 
-const Comments = ({ comments, postId, user, profile_pic }) => {
+const Comments = ({ comments, postId, profile_pic }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
-  const [rows, setRows] = useState("1");
-
-  const MIN_ROWS = 1;
-  const MAX_ROWS = 5;
-
 
   const handleAddComment = (e) => {
     e.preventDefault();
@@ -29,11 +21,6 @@ const Comments = ({ comments, postId, user, profile_pic }) => {
 
   const handleInputChange = (e) => {
     setText(e.target.value);
-    const rowlen = e.target.value.split("\n");
-
-    if (rowlen.length >= MIN_ROWS && rowlen.length <= MAX_ROWS) {
-      setRows(rowlen.length);
-    }
   };
 
   return (
@@ -77,7 +64,11 @@ const Comments = ({ comments, postId, user, profile_pic }) => {
       <div className="comments">
         <div className="comments__title">Comments</div>
         {comments?.map((comment) => (
-          <Comment postId={postId} userId={user} comment={comment} key={comment._id} />
+          <Comment
+            postId={postId}
+            comment={comment}
+            key={comment._id}
+          />
         ))}
       </div>
     </div>

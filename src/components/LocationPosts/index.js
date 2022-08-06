@@ -20,7 +20,7 @@ function LocationPosts() {
     dispatch(getPostsByLocation(location));
   }, []);
 
-  const saved_locations = posts
+  const savedLocations = posts
     .map((post) => post.location)
     .reduce(function (acc, curr) {
       if (!acc.includes(curr)) acc.push(curr);
@@ -36,7 +36,7 @@ function LocationPosts() {
     return locationList;
   }, []);
 
-  const suggest_locations = [...saved_locations, ...getRandomLocations];
+  const suggest_locations = [...savedLocations, ...getRandomLocations];
 
   return loading ? (
     <div className="circular-progress">

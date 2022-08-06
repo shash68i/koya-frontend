@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import * as Yup from "yup";
 import { updateMyProfile } from "../../../core/slices/userSlice";
 
-const initialValues = {
+const createProfileData = {
   bio: "",
   profile_pic: "",
   address: "",
@@ -27,8 +26,6 @@ const useStateUtils = () => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const profile = useSelector((state) => state.user.myProfile);
-
-  const [createProfileData, setCreateProfileData] = useState(initialValues);
 
   const handleCreateProfile = (values, { setSubmitting }) => {
     dispatch(updateMyProfile(values));

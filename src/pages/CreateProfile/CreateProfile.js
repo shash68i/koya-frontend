@@ -1,12 +1,12 @@
 import React from "react";
-import { NavLink, Navigate } from "react-router-dom";
 
-import { Formik, Form, Field, ErrorMessage} from "formik";
-import * as Yup from "yup";
+import { Link, Navigate } from "react-router-dom";
 
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { AccountCircleSharp } from "@mui/icons-material";
 import "./CreateProfile.css";
 import useStateUtils from "./utils/useStateUtils";
-import { AccountCircleSharp } from "@mui/icons-material";
+
 
 export default function CreateProfile() {
   const {
@@ -22,7 +22,7 @@ export default function CreateProfile() {
   }
 
   return user === null ? null : (
-    <div className="edit-profile-container">
+    <div className="create-profile-container">
       <div className="edit-profile-card">
         <AccountCircleSharp sx={{ fontSize: "15rem", color: "#4d4d4d" }} />
 
@@ -113,9 +113,7 @@ export default function CreateProfile() {
               </div>
 
               <div className="edit-group-btn">
-                <NavLink to="/profile">
-                  <button className="action-button cancel">Cancel</button>
-                </NavLink>
+                <Link to="/profile"></Link>
                 <button type="submit" className="action-button save">
                   Save
                 </button>

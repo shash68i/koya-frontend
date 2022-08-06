@@ -78,6 +78,9 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
+    [getMyProfile.pending]: (state, { payload }) => {
+      state.loading = true;
+    },
     [getMyProfile.fulfilled]: (state, { payload }) => {
       state.myProfile = payload;
       state.loading = false;

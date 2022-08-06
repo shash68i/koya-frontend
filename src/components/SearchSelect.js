@@ -1,6 +1,4 @@
-import { ActionTypes } from "@mui/base";
-import { useField } from "formik";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Select, { components } from "react-select";
 import { useDispatch } from "react-redux";
 import { getPostsByLocation } from "../core/slices/postSlice";

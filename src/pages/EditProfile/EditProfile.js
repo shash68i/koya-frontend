@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
@@ -112,9 +112,9 @@ export default function EditProfile() {
                 </div>
 
                 <div className="edit-group-btn">
-                  <NavLink to="/profile">
+                  <Link to="/profile">
                     <button className="action-button cancel">Cancel</button>
-                  </NavLink>
+                  </Link>
                   <button type="submit" className="action-button save">
                     Save
                   </button>

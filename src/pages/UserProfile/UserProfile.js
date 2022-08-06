@@ -5,9 +5,7 @@ import { useParams } from "react-router";
 
 import {
   AccountCircleTwoTone,
-  EmailOutlined,
   FacebookOutlined,
-  FmdGoodOutlined,
   Instagram,
   Twitter,
 } from "@mui/icons-material";
@@ -36,7 +34,7 @@ const UserProfile = () => {
   useEffect(() => {
     dispatch(getUserProfile(id));
     dispatch(getUserPosts(id));
-  }, []);
+  }, [id]);
 
   if (loading) {
     return (

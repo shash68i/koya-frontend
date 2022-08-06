@@ -1,10 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./Comment.css";
 
-const Comment = ({ comment, userId }) => {
-  const { username, first_name, last_name, profile_pic, text, date } = comment;
+const Comment = ({ comment }) => {
+  const { username, first_name, last_name, profile_pic, text, date, user } = comment;
+  console.log(comment, "cjde")
   const timestamp = new Date(date);
 
   return (
@@ -14,8 +15,8 @@ const Comment = ({ comment, userId }) => {
       </span>
       <div className="comment-card">
         <div className="comment__title">
-          <NavLink
-            to={`/users/${userId}`}
+          <Link
+            to={`/users/${user}`}
             state={{
               first_name: first_name,
               last_name: last_name,
@@ -25,7 +26,7 @@ const Comment = ({ comment, userId }) => {
             <span className="comment__name">
               {first_name} {last_name}
             </span>
-          </NavLink>
+          </Link>
           <span className="comment__username">@{username} </span>
           <span className="comment__timestamp">
             &#8226;{" "}

@@ -8,7 +8,7 @@ import {
 import Carousel from "react-elastic-carousel";
 
 import "./PostCard.css";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLikes, updateMyLikes } from "../../core/slices/postSlice";
 import { updateUserLikes } from "../../core/slices/userSlice";
@@ -190,9 +190,9 @@ function PostCard({ post, type }) {
         <div>
           <Carousel className="images-carousel" itemsToShow={1}>
             {images.map((image, index) => (
-              <NavLink to={`/posts/${_id}`} key={`image-${index + 1}`}>
+              <Link to={`/posts/${_id}`} key={`image-${index + 1}`}>
                 <img src={image} alt="Post Images" />
-              </NavLink>
+              </Link>
             ))}
           </Carousel>
         </div>
@@ -233,7 +233,7 @@ function PostCard({ post, type }) {
             </span>
 
             <span>
-              <NavLink className="comment" to={`/posts/${_id}`}>
+              <Link className="comment" to={`/posts/${_id}`}>
                 <Box
                   component="img"
                   src={CommentIcon}
@@ -248,7 +248,7 @@ function PostCard({ post, type }) {
                 {post.comments.length === 0 || post.comments.length === 1
                   ? "comment"
                   : "comments"}
-              </NavLink>
+              </Link>
             </span>
           </div>
         </div>
@@ -282,7 +282,7 @@ function PostCard({ post, type }) {
             )}
           </span>
           <span className="action-items">
-            <NavLink to={`/posts/${_id}`}>
+            <Link to={`/posts/${_id}`}>
               <Box
                 component="img"
                 src={CommentIcon}
@@ -293,7 +293,7 @@ function PostCard({ post, type }) {
                   margin: "1rem",
                 }}
               />
-            </NavLink>
+            </Link>
           </span>
         </div>
       </div>

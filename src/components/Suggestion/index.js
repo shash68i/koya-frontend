@@ -3,20 +3,12 @@ import React, { Fragment } from "react";
 import { FmdGoodOutlined } from "@mui/icons-material";
 
 import "./Suggestion.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getPostsByLocation, postActions } from "../../core/slices/postSlice";
-import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getPostsByLocation } from "../../core/slices/postSlice";
+import { Link } from "react-router-dom";
 
-// const suggest_locations = [
-//   'Ranchi, Jharkhand',
-//   'Shimla, Himachal Pradesh',
-//   'Mathura, UP',
-//   'New Delhi, UP'
-
-// ]
 export default function Suggestion({ locationOptions }) {
   const dispatch = useDispatch();
-  const filteredPosts = useSelector((state) => state.post.filteredPosts);
 
   return (
     <Fragment>
@@ -25,7 +17,11 @@ export default function Suggestion({ locationOptions }) {
 
         <ul className="suggest-location__items">
           {locationOptions.map((location, index) => (
-            <NavLink key={index} style={{ color: "black" }} to={encodeURI(`/posts/location/${location}`)}>
+            <Link
+              key={index}
+              style={{ color: "black" }}
+              to={encodeURI(`/posts/location/${location}`)}
+            >
               <li
                 className="suggest-location__item"
                 onClick={() => dispatch(getPostsByLocation(location))}
@@ -39,7 +35,7 @@ export default function Suggestion({ locationOptions }) {
                 />
                 <p>{location}</p>
               </li>
-            </NavLink>
+            </Link>
           ))}
         </ul>
       </div>

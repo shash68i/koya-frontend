@@ -1,12 +1,7 @@
 import React, { Fragment } from "react";
-
 import { FmdGoodOutlined } from "@mui/icons-material";
-
 import "./NearbyLocation.css";
-import { useDispatch, useSelector } from "react-redux";
-import { postActions } from "../../core/slices/postSlice";
-import { useNavigate } from "react-router";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function NearbyLocation({ locationOptions }) {
   return (
@@ -16,7 +11,7 @@ export default function NearbyLocation({ locationOptions }) {
 
         <div className="nearby-location__items">
           {locationOptions?.map((location, index) => (
-            <NavLink
+            <Link
               key={index}
               style={{ color: "black" }}
               to={encodeURI(`/posts/location/${location}`)}
@@ -31,7 +26,7 @@ export default function NearbyLocation({ locationOptions }) {
                 />
                 <p>{location}</p>
               </span>
-            </NavLink>
+            </Link>
           ))}
         </div>
       </div>

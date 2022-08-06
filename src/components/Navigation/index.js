@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import "./Navbar.css";
-import { NavLink } from "react-router-dom";
-import { Box, Dialog, DialogTitle, Paper } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Box, Dialog, Paper } from "@mui/material";
 import CreatePost from "../../pages/CreatePost";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../core/slices/authSlice";
@@ -27,10 +24,10 @@ export default function Navbar() {
   return (
     <div className="header">
       <div className="navbar container">
-        <NavLink to="/">
+        <Link to="/">
           {" "}
           <span className="logo">Koya</span>
-        </NavLink>
+        </Link>
         <SearchSelect
           className="search-bar"
           name="Search"
@@ -47,7 +44,7 @@ export default function Navbar() {
             />
           </div>
 
-          <NavLink to="/profile">
+          <Link to="/profile">
             <div className="profile">
               <Box
                 component="img"
@@ -55,9 +52,9 @@ export default function Navbar() {
                 sx={{ height: "2rem", width: "2rem", cursor: "pointer" }}
               />
             </div>
-          </NavLink>
+          </Link>
 
-          <NavLink to="/login">
+          <Link to="/login">
             <div
               className="sign-out"
               onClick={() => {
@@ -71,7 +68,7 @@ export default function Navbar() {
                 sx={{ height: "2rem", width: "2rem", cursor: "pointer" }}
               />
             </div>
-          </NavLink>
+          </Link>
         </div>
       </div>
 

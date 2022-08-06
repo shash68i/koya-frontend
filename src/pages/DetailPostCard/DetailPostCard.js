@@ -9,7 +9,7 @@ import Carousel from "react-elastic-carousel";
 
 import "../../components/PostCard/PostCard.css";
 import { Comments, NearbyLocation } from "../../components";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import useStateUtils from "./utils/useStateUtils";
 import {
@@ -75,42 +75,40 @@ function DetailPostCard() {
         <DialogContent>
           <Grid container alignItems="center" rowSpacing={2}>
             {post?.likes?.map((like, index) => (
-              <>
-                <Grid
-                  item
-                  sm={12}
-                  key={index}
-                  sx={{ display: "flex", gap: "1rem", alignItems: "center" }}
-                >
-                  <Box
-                    component="img"
-                    className="likes-profile-pic"
-                    src={like.profile_pic}
-                  />
+              <Grid
+                item
+                sm={12}
+                key={`post-${index}`}
+                sx={{ display: "flex", gap: "1rem", alignItems: "center" }}
+              >
+                <Box
+                  component="img"
+                  className="likes-profile-pic"
+                  src={like.profile_pic}
+                />
 
-                  <Link
-                    className="profile-link"
-                    to={`/users/${like.user}`}
-                    state={{
-                      first_name: like.first_name,
-                      last_name: like.last_name,
-                      username: like.username,
-                    }}
+                <Link
+                  className="profile-link"
+                  to={`/users/${like.user}`}
+                  state={{
+                    first_name: like.first_name,
+                    last_name: like.last_name,
+                    username: like.username,
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    color="black"
+                    fontWeight={600}
+                    noWrap
                   >
-                    <Typography
-                      variant="h6"
-                      color="black"
-                      fontWeight={600}
-                      noWrap
-                    >
-                      {like.first_name} {like.last_name}
-                    </Typography>
-                    <Typography variant="h6" color="gray" fontWeight={600}>
-                      @{like.username}
-                    </Typography>
-                  </Link>
-                </Grid>
-              </>
+                    {like.first_name} {like.last_name}
+                  </Typography>
+                  <Typography variant="h6" color="gray" fontWeight={600}>
+                    @{like.username}
+                  </Typography>
+                </Link>
+              </Grid>
             ))}
           </Grid>
         </DialogContent>
@@ -139,7 +137,7 @@ function DetailPostCard() {
               {post?.location}
             </div>
             <div className="user-details">
-              <NavLink
+              <Link
                 to={`/users/${post?.user}`}
                 state={{
                   first_name: post?.first_name,
@@ -152,8 +150,8 @@ function DetailPostCard() {
                     {post?.first_name} {post?.last_name}
                   </strong>{" "}
                 </span>
-              </NavLink>
-              <NavLink
+              </Link>
+              <Link
                 to={`/users/${post?.user}`}
                 state={{
                   first_name: post?.first_name,
@@ -162,7 +160,7 @@ function DetailPostCard() {
                 }}
               >
                 <span className="username">@{post?.username} </span>
-              </NavLink>
+              </Link>
               <span className="timestamp">
                 &#8226;{Date(post?.date).slice(4, 15)}
               </span>
@@ -171,11 +169,13 @@ function DetailPostCard() {
         </div>
 
         <div>
-          <Carousel className="large-images-carousel" itemsToShow={1}>
-            {post?.images?.map((image, index) => (
-              <img src={image} key={index} alt="Post Images" />
-            ))}
-          </Carousel>
+          {post && (
+            <Carousel className="large-images-carousel" itemsToShow={1}>
+              {post?.images?.map((image, index) => (
+                <img src={image} key={`post-img-${index}`} alt="Post Images" />
+              ))}
+            </Carousel>
+          )}
         </div>
 
         <div className="post-card__text">
@@ -185,7 +185,12 @@ function DetailPostCard() {
           {post?.text}
           <div className="tags-wrapper">
             {post?.tags?.map((tag, index) => (
-              <Typography variant="h6" color="#154078" key={index} noWrap>
+              <Typography
+                variant="h6"
+                color="#154078"
+                key={`tag-${index}`}
+                noWrap
+              >
                 #{tag}
               </Typography>
             ))}
@@ -263,7 +268,6 @@ function DetailPostCard() {
       <Comments
         comments={post?.comments}
         postId={id}
-        user={post?.user}
         profile_pic={post?.profile_pic}
       />
       <div className="nearby-location-section">

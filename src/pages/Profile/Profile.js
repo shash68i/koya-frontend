@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavLink, Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {
   AccountCircleTwoTone,
   FacebookOutlined,
@@ -98,9 +98,9 @@ export default function Profile() {
               {profile.bio}
             </span>
 
-            <NavLink to="/edit-profile" className="profile-edit">
+            <Link to="/edit-profile" className="profile-edit">
               <button className="edit-profile-btn">Edit Profile</button>
-            </NavLink>
+            </Link>
           </div>
         </div>
 

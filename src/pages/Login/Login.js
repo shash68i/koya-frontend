@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, NavLink } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
+import { Box, CircularProgress } from "@mui/material";
 import FormImage from "../../assets/images/form_image.jpg";
 import { loadUser, loginUser } from "../../core/slices/authSlice";
 import { getMyProfile } from "../../core/slices/userSlice";
 import "./LoginSignup.css";
-import { Box, CircularProgress } from "@mui/material";
 
-const initialValues = {
+const loginData = {
   email: "",
   password: "",
 };
@@ -21,15 +21,11 @@ const loginSchema = Yup.object({
     .email("Must be a valid mail")
     .required("Email is required"),
   password: Yup.string()
-    .min(6, "Password too short")
     .required("Password is Required!"),
 });
 
 function Login() {
   const dispatch = useDispatch(); // For dispatching the actions
-
-  const [loginData, setLoginData] = useState(initialValues);
-
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const loading = useSelector((state) => state.auth.loading);
 
@@ -101,7 +97,7 @@ function Login() {
                 Don't have an account?{" "}
                 <span>
                   {" "}
-                  <NavLink to="/register">Register</NavLink>
+                  <Link to="/register">Register</Link>
                 </span>
               </div>
             </Form>

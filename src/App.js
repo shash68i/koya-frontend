@@ -1,12 +1,11 @@
 import React, { Fragment, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Signup from "./pages/Signup";
 import "./App.css";
 import Login from "./pages/Login";
 
-// import Navbar from "./components/Navigation/Navbar";
 import Home from "./pages/Home/Home";
 import DetailPostCard from "./pages/DetailPostCard";
 import Profile from "./pages/Profile";
@@ -15,7 +14,7 @@ import CreatePost from "./pages/CreatePost";
 import PrivateRoute from "./components/Route/PrivateRoute";
 import { ToastContainer } from "react-toastify";
 import setAuthToken from "./utils/setAuthToken";
-import { authActions, loadUser } from "./core/slices/authSlice";
+import { loadUser } from "./core/slices/authSlice";
 import CreateProfile from "./pages/CreateProfile";
 import UserProfile from "./pages/UserProfile";
 
@@ -24,8 +23,6 @@ import { getMyProfile } from "./core/slices/userSlice";
 import { LocationPosts } from "./components";
 
 function App() {
-  const token = useSelector((state) => state.auth.token);
-  const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
 
   useEffect(() => {

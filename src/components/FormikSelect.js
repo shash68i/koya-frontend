@@ -37,9 +37,8 @@ const creatableCustomStyles = {
 
 export default function FormikSelect(props) {
   const [options, setOptions] = useState([]);
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-  const [field, meta, helpers] = useField(props.field.name); // can pass 'props' into useField also, if 'props' contains a name attribute
+  const [field, , helpers] = useField(props.field.name); // can pass 'props' into useField also, if 'props' contains a name attribute
   const { setValue } = helpers;
 
   const createOption = (label) => ({ label, value: label });
@@ -56,9 +55,6 @@ export default function FormikSelect(props) {
     }
   };
 
-  const openMenu = () => {
-    setMenuIsOpen(true);
-  };
 
   return props.selectStyle === "Normal Select" ? (
     <Select
@@ -79,9 +75,7 @@ export default function FormikSelect(props) {
       blurInputOnSelect={props.field.onBlur}
       placeholder={props.placeholder}
       name={props.field.name}
-      onFocus={openMenu}
       onBlur={field.onBlur}
-      // menuIsOpen={menuIsOpen}
       onChange={(selectedOption, ActionTypes) => {
         setFieldProps(selectedOption, ActionTypes);
       }}

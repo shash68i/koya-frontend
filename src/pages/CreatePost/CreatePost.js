@@ -1,82 +1,77 @@
-import React, { useState } from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 
-import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
-
-import "./CreatePost.css";
 import FormikSelect from "../../components/FormikSelect";
-import { useDispatch } from "react-redux";
 import {
-  allLocationOptions,
-  allLocations,
-  locationsGroup,
+  allLocationOptions
 } from "../../location";
+import "./CreatePost.css";
 import useStateUtils from "./utils/useStateUtils";
 
-const creatableCustomStyles = {
-  container: (provided, state) => ({
-    // none of react-select's styles are passed to <Control />
-    ...provided,
-    width: "100%",
-    fontSize: "1.5rem",
-    border: "none",
-  }),
-  control: (provided, state) => ({
-    ...provided,
-    border: "none",
-    borderBottom: "1px solid hsl(0, 0%, 80%)",
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    color: "black",
-    fontSize: "1.5rem",
-  }),
+// const creatableCustomStyles = {
+//   container: (provided, state) => ({
+//     // none of react-select's styles are passed to <Control />
+//     ...provided,
+//     width: "100%",
+//     fontSize: "1.5rem",
+//     border: "none",
+//   }),
+//   control: (provided, state) => ({
+//     ...provided,
+//     border: "none",
+//     borderBottom: "1px solid hsl(0, 0%, 80%)",
+//   }),
+//   option: (provided, state) => ({
+//     ...provided,
+//     color: "black",
+//     fontSize: "1.5rem",
+//   }),
 
-  singleValue: (provided, state) => ({
-    ...provided,
-  }),
+//   singleValue: (provided, state) => ({
+//     ...provided,
+//   }),
 
-  input: (provided, state) => ({
-    ...provided,
-  }),
-  indicatorsContainer: (styles) => ({
-    ...styles,
-    paddingTop: 7,
-    paddingBottom: 7,
-  }),
-};
+//   input: (provided, state) => ({
+//     ...provided,
+//   }),
+//   indicatorsContainer: (styles) => ({
+//     ...styles,
+//     paddingTop: 7,
+//     paddingBottom: 7,
+//   }),
+// };
 
-const selectCustomStyles = {
-  container: (provided, state) => ({
-    // none of react-select's styles are passed to <Control />
-    ...provided,
-    width: "50%",
-    fontSize: "1.5rem",
-    border: "none",
-  }),
-  control: (provided, state) => ({
-    ...provided,
-    border: "none",
-    borderBottom: "1px solid hsl(0, 0%, 80%)",
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    color: "black",
-    fontSize: "1.5rem",
-  }),
+// const selectCustomStyles = {
+//   container: (provided, state) => ({
+//     // none of react-select's styles are passed to <Control />
+//     ...provided,
+//     width: "50%",
+//     fontSize: "1.5rem",
+//     border: "none",
+//   }),
+//   control: (provided, state) => ({
+//     ...provided,
+//     border: "none",
+//     borderBottom: "1px solid hsl(0, 0%, 80%)",
+//   }),
+//   option: (provided, state) => ({
+//     ...provided,
+//     color: "black",
+//     fontSize: "1.5rem",
+//   }),
 
-  singleValue: (provided, state) => ({
-    ...provided,
-  }),
+//   singleValue: (provided, state) => ({
+//     ...provided,
+//   }),
 
-  input: (provided, state) => ({
-    ...provided,
-  }),
-  indicatorsContainer: (styles) => ({
-    ...styles,
-    paddingTop: 7,
-    paddingBottom: 7,
-  }),
-};
+//   input: (provided, state) => ({
+//     ...provided,
+//   }),
+//   indicatorsContainer: (styles) => ({
+//     ...styles,
+//     paddingTop: 7,
+//     paddingBottom: 7,
+//   }),
+// };
 
 export default function CreatePost({ handleClose }) {
   const { postData, postSchema, handlePostSubmit } = useStateUtils({
